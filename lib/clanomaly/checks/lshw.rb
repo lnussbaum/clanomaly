@@ -62,6 +62,10 @@ module ClanomalyChecks
       doc.xpath('//node[@class=\'memory\']/serial').each do |n|
         n.content = ''
       end
+      # remove strange slot field (causes false-positives on bordeplage)
+      doc.xpath('//node[@id=\'core\']/slot').each do |n|
+        n.content = ''
+      end
 
 
       doc.to_s
