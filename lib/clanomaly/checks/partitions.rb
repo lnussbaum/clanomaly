@@ -12,10 +12,11 @@ module ClanomalyChecks
         fd.puts <<-EOF
 #!/bin/bash
 exec 2>&1
-set -x
 
+echo "## fdisk -l"
 fdisk -l
 for fs in $(cat /proc/mounts | grep ext | cut -d ' ' -f 1); do
+   echo "## dumpe2fs -h $fs"
    dumpe2fs -h $fs
 done
         EOF
@@ -49,6 +50,7 @@ done
         l =~ /^Next check after:/ or
         l =~ /^Directory Hash Seed:/ or
         l =~ /^Mount count:/ or
+        l =~ /^Disk identifier:/ or
         l =~ /^Journal sequence:/ }.join("\n")
     end
   end
