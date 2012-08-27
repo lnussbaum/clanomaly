@@ -1,0 +1,33 @@
+#!/usr/bin/ruby
+
+$:.unshift '../lib'
+$:.unshift '../vendorlib'
+
+require 'clanomaly'
+
+require 'optparse'
+
+nodes = []
+
+optparse = OptionParser::new do |opts|
+  opts.on('-h', '--help', 'Show help') do
+    puts opts
+    exit
+  end
+  opts.on('-m NODE', '', 'Specify node') do |node|
+    nodes << node
+  end
+  opts.on('-f NODEFILE', '', 'Specify file containing list of nodes') do |nodefile|
+    nodes += IO::readlines(nodefile).map { |l| l.chomp }
+  end
+end
+
+begin
+  optparse.parse!
+rescue OptionParser::MissingArgument,OptionParser::InvalidOption => err
+  puts err
+  exit 1
+end
+
+cla = Clanomaly::new(nodes)
+cla.run

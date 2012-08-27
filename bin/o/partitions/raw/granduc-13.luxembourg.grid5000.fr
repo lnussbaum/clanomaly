@@ -1,0 +1,120 @@
++ fdisk -l
+
+Disk /dev/sda: 146.8 GB, 146815733760 bytes
+255 heads, 63 sectors/track, 17849 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000080
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1               1         487     3911796   82  Linux swap / Solaris
+/dev/sda2             488        1217     5863725   83  Linux
+/dev/sda3            1218        1947     5863725   83  Linux
+/dev/sda4            1948       17849   127732815    5  Extended
+/dev/sda5            1948       17849   127732783+  83  Linux
+++ cat /proc/mounts
+++ grep ext
+++ cut -d ' ' -f 1
++ for fs in '$(cat /proc/mounts | grep ext | cut -d '\'' '\'' -f 1)'
++ dumpe2fs -h /dev/sda3
+dumpe2fs 1.41.12 (17-May-2010)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          77e22b77-f33a-48af-bf63-c14102aeb7be
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery sparse_super large_file
+Filesystem flags:         signed_directory_hash 
+Default mount options:    (none)
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              367200
+Block count:              1465931
+Reserved block count:     73296
+Free blocks:              1306889
+Free inodes:              350695
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Reserved GDT blocks:      357
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         8160
+Inode blocks per group:   510
+Filesystem created:       Mon Aug 20 21:09:55 2012
+Last mount time:          Mon Aug 20 21:12:36 2012
+Last write time:          Mon Aug 20 21:10:30 2012
+Mount count:              2
+Maximum mount count:      32
+Last checked:             Mon Aug 20 21:09:55 2012
+Check interval:           15552000 (6 months)
+Next check after:         Sat Feb 16 20:09:55 2013
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+Required extra isize:     28
+Desired extra isize:      28
+Journal inode:            8
+Default directory hash:   half_md4
+Directory Hash Seed:      8e06fddb-cb5b-422a-8e7d-38a21112ac56
+Journal backup:           inode blocks
+Journal features:         journal_incompat_revoke
+Journal size:             128M
+Journal length:           32768
+Journal sequence:         0x0000000c
+Journal start:            1
+
++ for fs in '$(cat /proc/mounts | grep ext | cut -d '\'' '\'' -f 1)'
++ dumpe2fs -h /dev/sda5
+dumpe2fs 1.41.12 (17-May-2010)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          8b069824-91c5-497a-9f29-4609f3e84fbd
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery sparse_super large_file
+Filesystem flags:         signed_directory_hash 
+Default mount options:    (none)
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              7987200
+Block count:              31933195
+Reserved block count:     1596659
+Free blocks:              31383861
+Free inodes:              7987187
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Reserved GDT blocks:      1016
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         8192
+Inode blocks per group:   512
+Filesystem created:       Tue Jul 24 08:18:39 2012
+Last mount time:          Mon Aug 20 21:12:36 2012
+Last write time:          Mon Aug 20 21:12:36 2012
+Mount count:              47
+Maximum mount count:      32
+Last checked:             Tue Jul 24 08:18:39 2012
+Check interval:           15552000 (6 months)
+Next check after:         Sun Jan 20 07:18:39 2013
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+Required extra isize:     28
+Desired extra isize:      28
+Journal inode:            8
+Default directory hash:   half_md4
+Directory Hash Seed:      62b89463-c2d5-4ef9-911e-1c6b8c1d8df1
+Journal backup:           inode blocks
+Journal features:         journal_incompat_revoke
+Journal size:             128M
+Journal length:           32768
+Journal sequence:         0x00000d00
+Journal start:            1
+
