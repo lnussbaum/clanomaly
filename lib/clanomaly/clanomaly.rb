@@ -21,7 +21,10 @@ class Clanomaly
     end
     @nodes.uniq!
     @nodes.sort!
-    $log.info "Nodes: #{@nodes.join(' ')}"
+    $log.info "Command-line parameters: #{cmdline.join(' ')}"
+    $log.info "Nodes (#{@nodes.length}): #{NodeSet.fold(@nodes)}"
+    @alltests = ClanomalyChecks.constants.select {|c| ClanomalyChecks.const_get(c).is_a? Class}
+    $log.info "Available tests: #{@alltests.join(' ')}"
   end
 
   def run

@@ -12,6 +12,8 @@ inc_tests = []
 exc_tests = []
 no_ign_harmless = false
 
+args = ARGV.dup
+
 optparse = OptionParser::new do |opts|
   opts.on('-h', '--help', 'Show help') do
     puts opts
@@ -41,5 +43,5 @@ rescue OptionParser::MissingArgument,OptionParser::InvalidOption => err
   exit 1
 end
 
-cla = Clanomaly::new(nodes, inc_tests, exc_tests,no_ign_harmless)
+cla = Clanomaly::new(nodes, inc_tests, exc_tests,no_ign_harmless, args)
 cla.run
