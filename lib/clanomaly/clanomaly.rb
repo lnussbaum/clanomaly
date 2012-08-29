@@ -29,6 +29,9 @@ class Clanomaly
     $log.info("Running apt-get update on all nodes...")
     $ssh.exec_aggregate("apt-get update") { |stdout| stdout.split(/\n/).sort.join("\n") }
 
+    $log.info("Installing dialog (workaround for G5K bug #4522) ...")
+    $ssh.exec_aggregate("apt-get install dialog") { |stdout| stdout.split(/\n/).sort.join("\n") }
+
     tests = ClanomalyChecks.constants.select {|c| ClanomalyChecks.const_get(c).is_a? Class}
     tests.each do |e|
       $log.debug "Processing #{e}"
