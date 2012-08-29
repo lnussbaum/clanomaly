@@ -1,7 +1,11 @@
 #!/usr/bin/ruby
 
 $:.unshift '../lib'
+$:.unshift 'lib'
+$:.unshift ENV['HOME']+'/clanomaly/lib'
 $:.unshift '../vendorlib'
+$:.unshift 'vendorlib'
+$:.unshift ENV['HOME']+'/clanomaly/vendorlib'
 
 require 'clanomaly'
 
@@ -33,6 +37,10 @@ optparse = OptionParser::new do |opts|
   end
   opts.on('', '--do-not-ignore-harmless-problems', 'Do not ignore harmless problems') do
     no_ign_harmless = true
+  end
+  opts.on('-o DIR', '', 'Specify output dir (default: .)') do |dir|
+    FileUtils::mkdir_p(dir)
+    Dir::chdir(dir)
   end
 end
 

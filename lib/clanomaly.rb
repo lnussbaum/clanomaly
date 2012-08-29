@@ -1,3 +1,4 @@
+require 'clanomaly/multidelegator'
 require 'clanomaly/check'
 require 'clanomaly/checks'
 require 'clanomaly/clanomaly'

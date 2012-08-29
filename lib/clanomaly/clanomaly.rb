@@ -6,7 +6,8 @@ include ClanomalyChecks
 
 class Clanomaly
   def initialize(nodes, inc_tests, exc_tests, no_ign_harmless, cmdline)
-    $log = Logger.new(STDOUT)
+    log_file = File.new("clanomaly.log", "w")
+    $log = Logger.new(MultiDelegator.delegate(:write, :close).to(STDOUT,log_file))
     @nodes = nodes
     @inc_tests = inc_tests
     @exc_tests = exc_tests
