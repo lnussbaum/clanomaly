@@ -8,6 +8,9 @@ require 'clanomaly'
 require 'optparse'
 
 nodes = []
+inc_tests = []
+exc_tests = []
+no_ign_harmless = false
 
 optparse = OptionParser::new do |opts|
   opts.on('-h', '--help', 'Show help') do
@@ -20,6 +23,15 @@ optparse = OptionParser::new do |opts|
   opts.on('-f NODEFILE', '', 'Specify file containing list of nodes') do |nodefile|
     nodes += IO::readlines(nodefile).map { |l| l.chomp }
   end
+  opts.on('-i TEST', '', 'Run only TEST') do |test|
+    inc_tests << test
+  end
+  opts.on('-x TEST', '', 'Skip TEST') do |test|
+    exc_tests << test
+  end
+  opts.on('', '--do-not-ignore-harmless-problems', 'Do not ignore harmless problems') do
+    no_ign_harmless = true
+  end
 end
 
 begin
@@ -29,5 +41,5 @@ rescue OptionParser::MissingArgument,OptionParser::InvalidOption => err
   exit 1
 end
 
-cla = Clanomaly::new(nodes)
+cla = Clanomaly::new(nodes, inc_tests, exc_tests,no_ign_harmless)
 cla.run

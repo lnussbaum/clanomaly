@@ -1,5 +1,6 @@
 class ClanomalyCheck
-  def initialize
+  def initialize(opts)
+    @opts = opts
   end
 
   def setup

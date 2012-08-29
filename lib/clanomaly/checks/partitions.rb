@@ -4,7 +4,8 @@ require 'net/scp'
 
 module ClanomalyChecks
   class Partitions < ClanomalyCheck
-    def initialize
+    def initialize(opts)
+      super
     end
 
     def setup

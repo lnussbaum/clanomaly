@@ -3,7 +3,8 @@ require 'nokogiri'
 
 module ClanomalyChecks
   class Lshw < ClanomalyCheck
-    def initialize
+    def initialize(opts)
+      super
     end
 
     def setup

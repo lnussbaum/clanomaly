@@ -5,9 +5,12 @@ require 'clanomaly'
 include ClanomalyChecks
 
 class Clanomaly
-  def initialize(nodes)
+  def initialize(nodes, inc_tests, exc_tests, no_ign_harmless)
     $log = Logger.new(STDOUT)
     @nodes = nodes
+    @inc_tests = inc_tests
+    @exc_tests = exc_tests
+    @no_ignore_harmless = no_ign_harmless
     if @nodes.empty?
       if ENV['OAR_NODEFILE']
         $log.info("Using OAR_NODEFILE")
@@ -34,8 +37,11 @@ class Clanomaly
 
     tests = ClanomalyChecks.constants.select {|c| ClanomalyChecks.const_get(c).is_a? Class}
     tests.each do |e|
+      if (not @inc_tests.empty? and not @inc_tests.include?(e.to_s)) or @exc_tests.include?(e.to_s)
+        next
+      end
       $log.debug "Processing #{e}"
-      test = Object.const_get(e).new
+      test = Object.const_get(e).new({ :no_ignore_harmless => @no_ignore_harmless })
       test.setup
       test.run
     end
