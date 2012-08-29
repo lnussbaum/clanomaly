@@ -49,7 +49,8 @@ sysctl -a
         l =~ /^fs.inode-nr = / or
         l =~ /^fs.inode-state = / or
         l =~ /^fs.dentry-state = / or
-        l =~ /^fs.file-nr = /
+        l =~ /^fs.file-nr = / or
+        l =~ /^fs.file-max = /
       }.join("\n")
       s.gsub!(/error: permission denied on key 'net.ipv[46].route.flush'\n/, '')
       l = s.split(/\n/)

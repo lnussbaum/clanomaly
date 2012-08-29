@@ -43,6 +43,7 @@ done
       s.split(/\n/).reject { |l|
         l =~ /^Filesystem UUID:/ or
         l =~ /^Free blocks:/ or
+        l =~ /^Free inodes:/ or
         l =~ /^Filesystem created:/ or
         l =~ /^Last mount time:/ or
         l =~ /^Last write time:/ or
