@@ -1,6 +1,9 @@
 class ClanomalyCheck
+  attr_reader :groupable
+
   def initialize(opts)
     @opts = opts
+    @groupable = true
   end
 
   def setup
@@ -8,7 +11,11 @@ class ClanomalyCheck
 
   def run
   end
- 
+
+  def groups
+    @san_output.keys
+  end 
+
   protected
   def group_hash(h)
     return h.group_by { |e| e[1] }.to_a.map { |e| [e[0], e[1].map {|e2| e2[0] } ] }

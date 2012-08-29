@@ -5,7 +5,7 @@ require 'clanomaly'
 include ClanomalyChecks
 
 class Clanomaly
-  def initialize(nodes, inc_tests, exc_tests, no_ign_harmless)
+  def initialize(nodes, inc_tests, exc_tests, no_ign_harmless, cmdline)
     $log = Logger.new(STDOUT)
     @nodes = nodes
     @inc_tests = inc_tests
@@ -32,11 +32,11 @@ class Clanomaly
     $ssh.use(*@nodes.map { |n| "root@#{n}" } )
     $ssh.connect!
 
-    $log.info("Running apt-get update on all nodes...")
+    $log.debug("Running apt-get update on all nodes...")
     $ssh.exec_aggregate("apt-get update") { |stdout| stdout.split(/\n/).sort.join("\n") }
 
-    tests = ClanomalyChecks.constants.select {|c| ClanomalyChecks.const_get(c).is_a? Class}
-    tests.each do |e|
+    @nodes = {}
+    @alltests.each do |e|
       if (not @inc_tests.empty? and not @inc_tests.include?(e.to_s)) or @exc_tests.include?(e.to_s)
         next
       end
@@ -44,6 +44,31 @@ class Clanomaly
       test = Object.const_get(e).new({ :no_ignore_harmless => @no_ignore_harmless })
       test.setup
       test.run
+      if test.groupable
+        n = 0
+        test.groups.each do |group|
+          group.each do |node|
+            @nodes[node] ||= {}
+            @nodes[node][e] = n
+          end
+          n += 1
+        end
+      end
+    end
+    $log.info "Groups:"
+    groups = @nodes.to_a.group_by { |e| e[1] }
+    n = 1
+    groups2 = groups.to_a.map { |e| [e[1].map { |f| f[0] }, e[0]] }
+    ref = nil
+    groups2.sort { |a,b| a[0].length <=> b[0].length }.reverse.each do |grp|
+      if n == 1
+        $log.info("#{n} (#{grp[0].length}): #{NodeSet::fold(grp[0])} (reference)")
+        ref = grp[1]
+      else
+        diff = grp[1].keys.select { |k| grp[1][k] != ref[k] }.join(" ")
+        $log.info("#{n} (#{grp[0].length}): #{NodeSet::fold(grp[0])} (diff: #{diff})")
+      end
+      n += 1
     end
     $log.debug "Done."
   end

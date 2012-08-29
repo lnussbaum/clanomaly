@@ -5,6 +5,7 @@ module ClanomalyChecks
   class Hwinfo < ClanomalyCheck
     def initialize(opts)
       super
+      @groupable = false
     end
 
     def setup
