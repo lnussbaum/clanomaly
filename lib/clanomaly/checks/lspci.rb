@@ -13,8 +13,8 @@ module ClanomalyChecks
 
     def run
       @raw_output = $ssh.exec_getstdout("lspci")
-      dump_raw_output("o/lspci/raw")
-      sanitize_and_dump_output("o/lspci")
+      dump_raw_output("lspci/raw")
+      sanitize_and_dump_output("lspci")
     end
 
     private

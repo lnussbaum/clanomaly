@@ -10,8 +10,8 @@ module ClanomalyChecks
     def run
       @raw_output = $ssh.exec_getstdout("hwloc-ls -.xml")
       
-      dump_raw_output("o/hwloc/raw")
-      sanitize_and_dump_output("o/hwloc")
+      dump_raw_output("hwloc/raw")
+      sanitize_and_dump_output("hwloc")
     end
 
     private

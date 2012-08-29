@@ -34,8 +34,8 @@ done
 
     def run
       @raw_output = $ssh.exec_getstdout("bash /tmp/partitions-script")
-      dump_raw_output("o/partitions/raw")
-      sanitize_and_dump_output("o/partitions")
+      dump_raw_output("partitions/raw")
+      sanitize_and_dump_output("partitions")
     end
 
     private

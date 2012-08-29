@@ -33,8 +33,8 @@ sysctl -a
 
     def run
       @raw_output = $ssh.exec_getstdout("bash /tmp/kernelsettings-script")
-      dump_raw_output("o/kernelsettings/raw")
-      sanitize_and_dump_output("o/kernelsettings")
+      dump_raw_output("kernelsettings/raw")
+      sanitize_and_dump_output("kernelsettings")
     end
 
     private

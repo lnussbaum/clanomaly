@@ -13,8 +13,8 @@ module ClanomalyChecks
 
     def run
       @raw_output = $ssh.exec_getstdout("lshw -xml")
-      dump_raw_output("o/lshw/raw")
-      sanitize_and_dump_output("o/lshw")
+      dump_raw_output("lshw/raw")
+      sanitize_and_dump_output("lshw")
     end
 
     private

@@ -14,7 +14,7 @@ module ClanomalyChecks
 
     def run
       @raw_output = $ssh.exec_getstdout("hwinfo")
-      dump_raw_output("o/hwinfo")
+      dump_raw_output("hwinfo")
     end
 
     private
