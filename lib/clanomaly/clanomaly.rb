@@ -63,8 +63,11 @@ class Clanomaly
     ref = nil
     groups2.sort { |a,b| a[0].length <=> b[0].length }.reverse.each do |grp|
       if n == 1
-        $log.info("#{n} (#{grp[0].length}): #{NodeSet::fold(grp[0])} (reference)")
+        $log.info("#{n} (#{grp[0].length}): #{NodeSet::fold(grp[0])} (reference, written to 'nodes')")
         ref = grp[1]
+        File::open("nodes", "w") do |fd|
+          fd.puts grp[0].sort.join("\n")
+        end
       else
         diff = grp[1].keys.select { |k| grp[1][k] != ref[k] }.join(" ")
         $log.info("#{n} (#{grp[0].length}): #{NodeSet::fold(grp[0])} (diff: #{diff})")
