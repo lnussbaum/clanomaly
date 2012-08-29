@@ -8,7 +8,7 @@ module ClanomalyChecks
     end
 
     def setup
-      $ssh.exec_aggregate("apt-get -y install pciutils")
+      $ssh.exec_aggregate("DEBIAN_FRONTEND=noninteractive apt-get -y install pciutils")
     end
 
     def run

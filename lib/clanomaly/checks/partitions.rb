@@ -29,7 +29,7 @@ done
       chs.each do |ch|
         ch.wait
       end
-      $ssh.exec_aggregate("apt-get -y install e2fsprogs")
+      $ssh.exec_aggregate("DEBIAN_FRONTEND=noninteractive apt-get -y install e2fsprogs")
     end
 
     def run

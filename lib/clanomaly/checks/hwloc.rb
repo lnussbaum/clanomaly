@@ -4,7 +4,7 @@ require 'nokogiri'
 module ClanomalyChecks
   class Hwloc < ClanomalyCheck
     def setup
-      $ssh.exec_aggregate("apt-get -y install hwloc")
+      $ssh.exec_aggregate("DEBIAN_FRONTEND=noninteractive apt-get -y install hwloc")
     end
 
     def run
