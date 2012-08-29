@@ -67,6 +67,27 @@ module ClanomalyChecks
       doc.xpath('//node[@id=\'core\']/slot').each do |n|
         n.content = ''
       end
+      # renumber all SCSI ids
+      doc.xpath('//node[@class=\'volume\']/businfo').each do |n|
+        n.content = n.content.gsub(/scsi@[0-9]+/, 'scsi@N')
+      end
+      doc.xpath('//node[@class=\'storage\']/logicalname').each do |n|
+        n.content = n.content.gsub(/scsi[0-9]+/, 'scsiN')
+      end
+      doc.xpath('//node[@class=\'disk\']/businfo').each do |n|
+        n.content = n.content.gsub(/scsi@[0-9]+/, 'scsi@N')
+      end
+      doc.xpath('//node[@class=\'disk\']').each do |n|
+        if not n['handle'].nil?
+          n['handle'] = n['handle'].gsub(/SCSI:[0-9]+:/, 'SCSI:NN:')
+        end
+      end
+
+      if ['stremi'].include?(cluster)
+        # remove memory product and vendor name
+        doc.xpath('//node[@class=\'memory\']/product').each { |n| n.unlink }
+        doc.xpath('//node[@class=\'memory\']/vendor').each { |n| n.unlink }
+      end
 
 
       doc.to_s
