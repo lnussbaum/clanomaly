@@ -18,7 +18,7 @@ module ClanomalyChecks
     end
 
     private
-    def sanitize(s)
+    def sanitize(s, cluster)
       doc = Nokogiri::XML::parse(s)
       # rm number from hostname
       x = doc.xpath('//node[@class=\'system\']').first

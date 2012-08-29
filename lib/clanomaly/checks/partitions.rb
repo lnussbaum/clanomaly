@@ -39,7 +39,7 @@ done
     end
 
     private
-    def sanitize(s)
+    def sanitize(s, cluster)
       s.split(/\n/).reject { |l|
         l =~ /^Filesystem UUID:/ or
         l =~ /^Free blocks:/ or

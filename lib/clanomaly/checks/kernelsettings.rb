@@ -38,7 +38,7 @@ sysctl -a
     end
 
     private
-    def sanitize(s)
+    def sanitize(s, cluster)
       
       s = s.split(/\n/).reject { |l|
         l =~ /^kernel.random.entropy_avail =/ or

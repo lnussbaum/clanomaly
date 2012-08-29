@@ -26,7 +26,12 @@ class ClanomalyCheck
   def sanitize_output
     so = {}
     @raw_output.each_pair do |k, v|
-      so[k] = sanitize(v)
+      if k =~ /grid5000.fr$/
+        cluster = k.split('-',2)[0]
+      else
+        cluster = nil
+      end
+      so[k] = sanitize(v, cluster)
     end
     so2 = group_hash(so)
     @san_output = {}

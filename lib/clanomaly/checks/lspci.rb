@@ -18,7 +18,7 @@ module ClanomalyChecks
     end
 
     private
-    def sanitize(s)
+    def sanitize(s, cluster)
       s.gsub(/Serial Number.*/,'Serial Number')
     end
   end

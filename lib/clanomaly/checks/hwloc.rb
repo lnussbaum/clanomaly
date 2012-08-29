@@ -15,7 +15,7 @@ module ClanomalyChecks
     end
 
     private
-    def sanitize(s)
+    def sanitize(s, cluster)
       s
     end
   end
