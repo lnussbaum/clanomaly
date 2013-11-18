@@ -13,7 +13,7 @@ module ClanomalyChecks
     end
 
     def run
-      @raw_output = $ssh.exec_getstdout("hwinfo")
+      @raw_output = $ssh.exec_getstdout("hwinfo 2>/dev/null")
       dump_raw_output("hwinfo")
     end
 
