@@ -42,6 +42,7 @@ done
     def sanitize(s, cluster)
       s.split(/\n/).reject { |l|
         l =~ /^Filesystem UUID:/ or
+        l =~ /^Lifetime writes:/ or
         l =~ /^Free blocks:/ or
         l =~ /^Free inodes:/ or
         l =~ /^Filesystem created:/ or
