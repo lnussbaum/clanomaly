@@ -16,7 +16,10 @@ module ClanomalyChecks
 
     private
     def sanitize(s, cluster)
-      s
+      doc = Nokogiri::XML::parse(s)
+      doc.xpath('//info[@name=\'HostName\']').each { |n| n.unlink }
+      doc.xpath('//info[@name=\'Address\']').each { |n| n.unlink }
+      doc.to_s
     end
   end
 end
