@@ -1,11 +1,11 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1338361446167" ID="ID_1225162175" MODIFIED="1338529013958" TEXT="Clanomaly - outliers detection">
+<node CREATED="1338361446167" ID="ID_1225162175" MODIFIED="1346107267242" TEXT="Clanomaly - outliers detection">
 <node CREATED="1338529108427" ID="ID_1421664951" MODIFIED="1338529131292" POSITION="right" TEXT="goals">
 <node CREATED="1338529133639" ID="ID_743826413" MODIFIED="1338529140926" TEXT="detect nodes that are unsuitable for an experiment"/>
 <node CREATED="1338529147169" ID="ID_303297126" MODIFIED="1338529160858" TEXT="store state of nodes to later understand performance results"/>
 </node>
-<node CREATED="1338361468077" ID="ID_1542016235" MODIFIED="1342300230692" POSITION="right" TEXT="list hardware, filter output to find clusters of identical nodes">
+<node CREATED="1338361468077" ID="ID_1542016235" MODIFIED="1346107270854" POSITION="right" TEXT="list hardware, filter output to find clusters of identical nodes">
 <node CREATED="1338362030892" ID="ID_1607566941" MODIFIED="1345489752966" TEXT="lspci">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
@@ -22,24 +22,44 @@
 </node>
 <node CREATED="1338361585647" ID="ID_29210075" MODIFIED="1338361638420" TEXT="ohai"/>
 <node CREATED="1338362191109" ID="ID_281757924" MODIFIED="1338362196803" TEXT="optionally compare with G5K API"/>
+<node CREATED="1346107277269" ID="ID_1445135056" MODIFIED="1346107518626" TEXT="first hardware dumper with lshw, hwloc, /proc/cpuinfo, lspci">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1346110412748" ID="ID_170678951" MODIFIED="1346110427211" TEXT="introduce notion of comparable check, and enable output of groups"/>
+</node>
+<node CREATED="1346107297455" ID="ID_1416622218" MODIFIED="1346107522276" TEXT="second hardware dumper with hwinfo">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
 </node>
 <node CREATED="1338361733008" ID="ID_1245785273" MODIFIED="1342300243686" POSITION="right" TEXT="analyse system configuration">
 <node CREATED="1338361737400" ID="ID_1543880505" MODIFIED="1345494909513" TEXT="partitions, filesystems, filesystems options">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1338361742847" ID="ID_1459792741" MODIFIED="1338361751510" TEXT="installed packages + versions"/>
-<node CREATED="1338361755679" ID="ID_1408303409" MODIFIED="1338361764189" TEXT="running kernel, loaded modules"/>
-<node CREATED="1338361770151" ID="ID_1022611043" MODIFIED="1338361771620" TEXT="dmesg output"/>
-<node CREATED="1338362347477" ID="ID_1417905872" MODIFIED="1338364141819" TEXT="some options in /proc / sysctl">
-<node CREATED="1338362354654" ID="ID_1289774623" MODIFIED="1338362574163" TEXT="IO scheduler"/>
-<node CREATED="1338362578652" ID="ID_1038032598" MODIFIED="1338362583538" TEXT="cpufreq scheduler"/>
-<node CREATED="1338362590434" ID="ID_1088727944" MODIFIED="1338362597542" TEXT="TCP tunings"/>
-<node CREATED="1338364143004" ID="ID_1010560512" MODIFIED="1338364145689" TEXT="all sysctls??"/>
+<node CREATED="1338361755679" ID="ID_1408303409" MODIFIED="1346111060433" TEXT="running kernel, loaded modules">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
+<node CREATED="1338361770151" ID="ID_1022611043" MODIFIED="1338361771620" TEXT="dmesg output"/>
+<node CREATED="1338362347477" ID="ID_1417905872" MODIFIED="1346111078915" TEXT="some options in /proc / sysctl">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1338362354654" ID="ID_1289774623" MODIFIED="1346111078914" TEXT="IO scheduler">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1338362578652" ID="ID_1038032598" MODIFIED="1346111078913" TEXT="cpufreq scheduler">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1338362590434" ID="ID_1088727944" MODIFIED="1346111078912" TEXT="TCP tunings">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1338364143004" ID="ID_1010560512" MODIFIED="1346111078911" TEXT="all sysctls??">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1346111269155" ID="ID_157783451" MODIFIED="1346111276108" TEXT="some relevant stuff in /sys"/>
 <node CREATED="1342300263891" ID="ID_1895564182" MODIFIED="1342300267564" TEXT="check connectivity">
 <node CREATED="1342300270340" ID="ID_1071550273" MODIFIED="1342300272629" TEXT="ethtool"/>
 <node CREATED="1342300274471" ID="ID_1769861325" MODIFIED="1342300289239" TEXT="ibv_devinfo"/>
 </node>
+<node CREATED="1346111316744" ID="ID_33381616" MODIFIED="1346111326900" TEXT="debian packages, config files, etc."/>
 </node>
 <node CREATED="1338361669699" ID="ID_585985261" MODIFIED="1338361971833" POSITION="right" TEXT="test performance">
 <node CREATED="1338361684394" ID="ID_746891879" MODIFIED="1338361687610" TEXT="CPU"/>
